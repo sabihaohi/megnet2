@@ -14,10 +14,25 @@ frame.on("ready",()=>{
 
 
     //outerrect
-    const outerRect1 = new Rectangle(300,300,"red").pos(660,240).alp(.3);
-    const outerRect2 = new Rectangle(300,300,"green").pos(960,240).alp(.3);
-    const outerRect3 = new Rectangle(300,300,"yellow").pos(660,540).alp(.3);
-    const outerRect4 = new Rectangle(300,300,"grey").pos(960,540).alp(.3);
+    // const outerRect1 = new Rectangle(300,300,"red").pos(660,240).alp(.3);
+    // const outerRect2 = new Rectangle(300,300,"green").pos(960,240).alp(.3);
+    // const outerRect3 = new Rectangle(300,300,"yellow").pos(660,540).alp(.3);
+    // const outerRect4 = new Rectangle(300,300,"grey").pos(960,540).alp(.3);
+
+
+   const circle1 = new Circle(100,"green").pos(fixedMagnet.x-200,fixedMagnet.y-100).alp(.3);
+   const circle2 = new Circle(150,"red").pos(fixedMagnet.x-300,fixedMagnet.y-150).alp(.3);
+   const circle3 = new Circle(200,"red").pos(fixedMagnet.x-400,fixedMagnet.y-200).alp(.3);
+
+   const circle4 = new Circle(100,"red").pos(fixedMagnet.x,fixedMagnet.y-100).alp(.3);
+   const circle5 = new Circle(150,"red").pos(fixedMagnet.x,fixedMagnet.y-150).alp(.3);
+   const circle6 = new Circle(200,"red").pos(fixedMagnet.x,fixedMagnet.y-200).alp(.3);
+
+
+  
+   
+ 
+
 
 
 
@@ -58,17 +73,213 @@ frame.on("ready",()=>{
     });
 
 
-    dragMagnet.on("pressmove",updateMagnets);
+    dragMagnet.on("pressup",updateMagnets);
 
     function updateMagnets(){
+        const angles = calculateAngles();
+        const distances = calculateDistances();
+        if(distances.minDistance > 400){
+            return;
+        }
+        // let x = dragMagnet.x;
+        // let y = dragMagnet.y;
+
+        //if(distances.minDistance === distances.dragNfixedN)
+
+        if(dragMagnet.hitTestCircle(circle1)){
+            console.log(6);
+           if(distances.minDistance === distances.dragNfixedN){
+            fixedMagnet.animate({
+                target: fixedMagnet,
+                props: {rotation: 180},
+                time: 1,
+                ease: "quadOut",
+                call: ()=>
+                    {
+                        dragMagnet.animate({
+                            target: dragMagnet,
+                            props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                            time: 0.25,
+                            ease: "quadOut",
+                        });
+                    }
+            });
+           }
+            if(distances.minDistance === distances.dragNfixedS){
+                dragMagnet.animate({
+                    target: dragMagnet,
+                    props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                    time: 0.25,
+                    ease: "quadOut",
+                });
+            }
+
+            if(distances.minDistance === distances.dragSfixedS){
+                dragMagnet.animate({
+                    target: dragMagnet,
+                    props: {x:fixedMagnet.x-700, y:fixedMagnet.y},
+                    time: 0.25,
+                    ease: "quadOut",
+                });
+            }
+
+            if(distances.minDistance === distances.dragSfixedN);{
+                dragMagnet.animate({
+                    target: dragMagnet,
+                    props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                    time: 0.25,
+                    ease: "quadOut",
+                });
+            }
+            
+           
+        };
+
+        if(dragMagnet.hitTestCircle(circle2)){
+         
+           if(distances.minDistance === distances.dragNfixedN){
+            fixedMagnet.animate({
+                target: fixedMagnet,
+                props: {rotation: 180},
+                time: 1,
+                ease: "quadOut",
+                call: ()=>
+                    {
+                        dragMagnet.animate({
+                            target: dragMagnet,
+                            props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                            time: 0.25,
+                            ease: "quadOut",
+                        });
+                    }
+            });
+           }
+            if(distances.minDistance === distances.dragNfixedS){
+                dragMagnet.animate({
+                    target: dragMagnet,
+                    props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                    time: 0.25,
+                    ease: "quadOut",
+                });
+            }
+
+            if(distances.minDistance === distances.dragSfixedS){
+                dragMagnet.animate({
+                    target: dragMagnet,
+                    props: {x:fixedMagnet.x-900, y:fixedMagnet.y},
+                    time: 0.25,
+                    ease: "quadOut",
+                });
+            }
+
+            if(distances.minDistance === distances.dragSfixedN);{
+
+                
+                dragMagnet.animate({
+                    target: dragMagnet,
+                    props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                    time: 1,
+                    ease: "quadOut",
+                });
+            }
+            
+           
+        }
+
+
+        if(dragMagnet.hitTestCircle(circle3)){
+         
+            if(distances.minDistance === distances.dragNfixedN){
+             fixedMagnet.animate({
+                 target: fixedMagnet,
+                 props: {rotation: 180},
+                 time: 1,
+                 ease: "quadOut",
+                 call: ()=>
+                     {
+                         dragMagnet.animate({
+                             target: dragMagnet,
+                             props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                             time: 0.25,
+                             ease: "quadOut",
+                         });
+                     }
+             });
+            }
+             if(distances.minDistance === distances.dragNfixedS){
+                 dragMagnet.animate({
+                     target: dragMagnet,
+                     props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                     time: 0.25,
+                     ease: "quadOut",
+                 });
+             }
+ 
+             if(distances.minDistance === distances.dragSfixedS){
+                 dragMagnet.animate({
+                     target: dragMagnet,
+                     props: {x:fixedMagnet.x-900, y:fixedMagnet.y},
+                     time: 0.25,
+                     ease: "quadOut",
+                 });
+             }
+ 
+             if(distances.minDistance === distances.dragSfixedN);{
+                 dragMagnet.animate({
+                     target: dragMagnet,
+                     props: {x:fixedMagnet.x-fixedMagnet.width, y:fixedMagnet.y},
+                     time: 2,
+                     ease: "quadOut",
+                 });
+             }
+             
+            
+         }
+ 
+
+
+
+        
+        
+
+
       
     }
 
+    function calculateAngles(){
+        const magnetPos = getMagnetsGlobalPosition();
+        const angles = {}
+        angles.dragNfixedN = zim.angle(magnetPos.dragMagnetN.x, magnetPos.dragMagnetN.y, magnetPos.fixedMagnetN.x, magnetPos.fixedMagnetN.y);
+        angles.dragNfixedS = zim.angle(magnetPos.dragMagnetN.x, magnetPos.dragMagnetN.y, magnetPos.fixedMagnetS.x, magnetPos.fixedMagnetS.y);
+        angles.dragSfixedN = zim.angle(magnetPos.dragMagnetS.x, magnetPos.dragMagnetS.y, magnetPos.fixedMagnetN.x, magnetPos.fixedMagnetN.y);
+        angles.dragSfixedS = zim.angle(magnetPos.dragMagnetS.x, magnetPos.dragMagnetS.y, magnetPos.fixedMagnetS.x, magnetPos.fixedMagnetS.y);
+        angles.centerToCenter = zim.angle(dragMagnet.x, dragMagnet.y, fixedMagnet.x, fixedMagnet.y);
+        return angles;
+    }
 
 
-  
+    function calculateDistances(){
+        const magnetPos = getMagnetsGlobalPosition();
+        const distances = {}
+        distances.dragNfixedN = zim.dist(magnetPos.dragMagnetN.x, magnetPos.dragMagnetN.y, magnetPos.fixedMagnetN.x, magnetPos.fixedMagnetN.y);
+        distances.dragNfixedS = zim.dist(magnetPos.dragMagnetN.x, magnetPos.dragMagnetN.y, magnetPos.fixedMagnetS.x, magnetPos.fixedMagnetS.y);
+        distances.dragSfixedN = zim.dist(magnetPos.dragMagnetS.x, magnetPos.dragMagnetS.y, magnetPos.fixedMagnetN.x, magnetPos.fixedMagnetN.y);
+        distances.dragSfixedS = zim.dist(magnetPos.dragMagnetS.x, magnetPos.dragMagnetS.y, magnetPos.fixedMagnetS.x, magnetPos.fixedMagnetS.y);
+        distances.minDistance = Math.min(distances.dragNfixedN, distances.dragNfixedS, distances.dragSfixedN, distances.dragSfixedS);
+        return distances;
+    }
+
    
-   
+    function getMagnetsGlobalPosition(){
+        const magnetPos = {};
+
+        // Convert local position to global position
+        magnetPos.fixedMagnetN = fixedMagnetN.localToGlobal(50, 50);
+        magnetPos.fixedMagnetS = fixedMagnetS.localToGlobal(50, 50);
+        magnetPos.dragMagnetN = dragMagnetN.localToGlobal(50, 50);
+        magnetPos.dragMagnetS = dragMagnetS.localToGlobal(50, 50);
+        return magnetPos;
+    }
 
 
 })
