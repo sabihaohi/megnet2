@@ -105,37 +105,71 @@ frame.on("ready", ()=>{
         const distances = calculateDistances();
         const angles = calculateAngles();
 
-        if(distances.minDistance > 400){
-            return;
-        }
 
         if(distances.minDistance === distances.dragNfixedN){
-            if(angles.dragNfixedN < 30 || angles.dragNfixedN > 330){
+            if(dragMagnet.hitTestCircle(circle3)){
                 fixedMagnet.animate({
                     rotation: 180,
                 })
             }
-            else if(angles.dragNfixedN < 210 && angles.dragNfixedN > 150){
+            else if(dragMagnet.hitTestCircle(circle6)){
                 fixedMagnet.animate({
                     rotation: 0,
                 })
             }
         }
         else if(distances.minDistance === distances.dragNfixedS){
-            
+            let rotation = 0;
+            if(dragMagnet.hitTestCircle(circle3) && angles.dragSfixedN<45){
+                rotation = angles.dragSfixedN;
+            }
+            else if(dragMagnet.hitTestCircle(circle3) && angles.dragSfixedN>315){
+                rotation = angles.dragSfixedN-360;
+            }
+            else if(dragMagnet.hitTestCircle(circle6) && angles.dragSfixedN>135 && angles.dragSfixedN<180){
+                rotation = angles.dragSfixedN-180;
+            }
+            else if(dragMagnet.hitTestCircle(circle6) && angles.dragSfixedN>180 && angles.dragSfixedN<225){
+                rotation = 180-angles.dragSfixedN;
+            }
+
+
+            fixedMagnet.animate({
+                rotation:rotation,
+                time:0.2,
+            })
 
         }
         else if(distances.minDistance === distances.dragSfixedN){
-            
+
+            let rotation = 0;
+            if(dragMagnet.hitTestCircle(circle3) && angles.dragSfixedN<45){
+                rotation = angles.dragSfixedN;
+            }
+            else if(dragMagnet.hitTestCircle(circle3) && angles.dragSfixedN>315){
+                rotation = angles.dragSfixedN-360;
+            }
+            else if(dragMagnet.hitTestCircle(circle6) && angles.dragSfixedN>135 && angles.dragSfixedN<180){
+                rotation = angles.dragSfixedN-180;
+            }
+            else if(dragMagnet.hitTestCircle(circle6) && angles.dragSfixedN>180 && angles.dragSfixedN<225){
+                rotation = 180-angles.dragSfixedN;
+            }
+
+
+            fixedMagnet.animate({
+                rotation:rotation,
+                time:0.2,
+            })
             
         }
         else{
-            if(angles.dragSfixedS < 30 || angles.dragSfixedS > 330){
+            if(dragMagnet.hitTestCircle(circle3)){
                 fixedMagnet.animate({
                     rotation: 0,
                 })
             }
-            else if(angles.dragSfixedS < 210 && angles.dragSfixedS > 150){
+            else if(dragMagnet.hitTestCircle(circle6)){
                 fixedMagnet.animate({
                     rotation: 180,
                 })
@@ -155,34 +189,28 @@ frame.on("ready", ()=>{
         let x = dragMagnet.x;
         let y = dragMagnet.y;
 
-
-        if(dragMagnet.hittestCircle(circle1)){
-            if(distances.minDistance === distances.dragNfixedN){
-                if(angles.dragNfixedN < 45 || angles.dragNfixedN > 315){
-                    x = dragMagnet.x - (500 - distances.minDistance);
-                    y = dragMagnet.y;
-                }
-                else if(angles.dragNfixedN < 225 && angles.dragNfixedN > 135){
-                    x = dragMagnet.x + (500 - distances.minDistance);
-                    y = dragMagnet.y;
-                }
-                else if(angles.dragNfixedN >= 45 && angles.dragNfixedN <= 135){
-                    x = dragMagnet.x;
-                    y = dragMagnet.y - (450 - distances.minDistance);
-                }
-                else if(angles.dragNfixedN >= 225 && angles.dragNfixedN <= 315){
-                    x = dragMagnet.x;
-                    y = dragMagnet.y + (450 - distances.minDistance);
-                }
-    
-                dragMagnet.animate({
-                    props: {x: x, y: y}
-                });
+        if(distances.minDistance === distances.dragNfixedN){
+            if(angles.dragNfixedN < 45 || angles.dragNfixedN > 315){
+                x = dragMagnet.x - (500 - distances.minDistance);
+                y = dragMagnet.y;
             }
-            
-        }
+            else if(angles.dragNfixedN < 225 && angles.dragNfixedN > 135){
+                x = dragMagnet.x + (500 - distances.minDistance);
+                y = dragMagnet.y;
+            }
+            else if(angles.dragNfixedN >= 45 && angles.dragNfixedN <= 135){
+                x = dragMagnet.x;
+                y = dragMagnet.y - (450 - distances.minDistance);
+            }
+            else if(angles.dragNfixedN >= 225 && angles.dragNfixedN <= 315){
+                x = dragMagnet.x;
+                y = dragMagnet.y + (450 - distances.minDistance);
+            }
 
-       
+            dragMagnet.animate({
+                props: {x: x, y: y}
+            });
+        }
         else if(distances.minDistance === distances.dragNfixedS){
             if(angles.dragNfixedS < 45 || angles.dragNfixedS > 315){
                 x = fixedMagnet.x-200;
@@ -265,7 +293,7 @@ frame.on("ready", ()=>{
                 x = dragMagnet.x;
                 y = dragMagnet.y - (450 - distances.minDistance);
             }
-            else if(angles.dragSfixedS >= 225 && angles.dragSfixedS <= 135){
+            else if(angles.dragSfixedS >= 225 && angles.dragSfixedS <= 315){
                 x = dragMagnet.x;
                 y = dragMagnet.y + (450 - distances.minDistance);
             }

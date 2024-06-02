@@ -29,12 +29,6 @@ frame.on("ready",()=>{
    const circle6 = new Circle(200,"red").pos(fixedMagnet.x,fixedMagnet.y-200).alp(.3);
 
 
-  
-   
- 
-
-
-
 
     // Draggable Magnet.
     const dragMagnet = new Rectangle(200, 100).centerReg().pos(50, null).drag();
@@ -85,6 +79,8 @@ frame.on("ready",()=>{
         // let y = dragMagnet.y;
 
         //if(distances.minDistance === distances.dragNfixedN)
+
+            
 
         if(dragMagnet.hitTestCircle(circle1)){
             console.log(6);
