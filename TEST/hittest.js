@@ -119,12 +119,12 @@ frame.on("ready", ()=>{
             }
         }
         else if(distances.minDistance === distances.dragNfixedS){
-            let rotation = 0;
+            let rotation = 180;
             if(dragMagnet.hitTestCircle(circle3) && angles.dragSfixedN<45){
-                rotation = angles.dragSfixedN;
+                rotation = angles.dragSfixedN+180;
             }
             else if(dragMagnet.hitTestCircle(circle3) && angles.dragSfixedN>315){
-                rotation = angles.dragSfixedN-360;
+                rotation = angles.dragSfixedN-180;
             }
             else if(dragMagnet.hitTestCircle(circle6) && angles.dragSfixedN>135 && angles.dragSfixedN<180){
                 rotation = angles.dragSfixedN-180;
